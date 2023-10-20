@@ -1,40 +1,36 @@
-name: Workflow Dispatch Input AWS region
+
+          
+    
+name: Destroy Terraform Infrastructure
 
 on:
-  workflow_dispatch:
-    inputs:
-      region:
-        description: 'AWS Region'
-        default: 'ap-south-1'
+  workflow_dispatch: {}
 
 jobs:
   destroy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ github.event.inputs.region }}
-          
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
 
-    - name: Initialize Terraform
-      run: terraform init
-      working-directory: module/
-      
-    - name: Plan Terraform
-      run: terraform plan -var-file=rakesh.tfvars -out=tfplan
-      working-directory: module/
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Initialize Terraform
+        run: terraform init
+        working-directory: module/
+
+      - name: Destroy Terraform
+        run: terraform destroy -var-file=rakesh.tfvars  -auto-approve 
+        working-directory: module/
 
 
-    - name: Destroy Terraform
-      working-directory: module/
-      run: terraform destroy -var-file=rakesh.tfvars  -auto-approve 
