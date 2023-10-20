@@ -38,7 +38,7 @@ jobs:
       run: terraform init
       
     - name: Destroy Resources
-      run: terraform destroy -var-file=rakesh.tfvars  -auto-approve 
+      run: terraform destroy  -auto-approve 
 
 
 
