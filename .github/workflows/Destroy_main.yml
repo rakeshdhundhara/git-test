@@ -33,7 +33,7 @@ jobs:
 
 
     - name: Destroy Terraform
-      run:  terraform destroy -var-file=rakesh.tfvars -auto-approve -state=terraform.tfstate
+      run:  terraform destroy -var-file=rakesh.tfvars -auto-approve 
 
       working-directory: module/
 
