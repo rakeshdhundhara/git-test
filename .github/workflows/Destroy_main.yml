@@ -36,5 +36,5 @@ jobs:
 
 
     - name: Destroy Terraform
-      run: terraform destroy -auto-approve "tfplan"
+      run: terraform destroy -auto-approve 
       working-directory: module/
