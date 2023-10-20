@@ -31,6 +31,6 @@ jobs:
       working-directory: module/
 
 
-    - name: Destroy Resources
+    - name: Destroy Terraform
       working-directory: module/
       run: terraform destroy -var-file=rakesh.tfvars  -auto-approve 
