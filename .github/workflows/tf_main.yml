@@ -5,6 +5,7 @@ on:
     inputs:
       region:
         description: 'AWS Region'
+        required: true
         default: 'ap-south-1'
 
 jobs:
