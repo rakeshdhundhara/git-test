@@ -1,10 +1,38 @@
-name: Workflow Dispatch Input AWS region (Create_main)
+
+Skip to content
+
+    rakeshdhundhara
+    /
+    git-test
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+
+    Settings
+
+Workflow Dispatch Input AWS region (Create_main and destroy)
+Workflow Dispatch Input AWS region (Create_main and destroy) #2
+
+Jobs
+
+Run details
+
+Workflow file for this run
+.github/workflows/tf_main.yml at 87af519
+name: Workflow Dispatch Input AWS region (Create_main and destroy)
 
 on:
   workflow_dispatch:
     inputs:
       region:
         description: 'AWS Region'
+        required: true
         default: 'ap-south-1'
 
 jobs:
@@ -29,12 +57,13 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
       working-directory: module/
-
+      
     - name: Plan Terraform
       run: terraform plan -var-file=rakesh.tfvars -out=tfplan
       working-directory: module/
 
     - name: Apply Terraform
-      run: terraform apply -auto-approve "tfplan"
+      run: terraform apply -var-file=rakesh.tfvars -auto-approve "tfplan"
       working-directory: module/
-      # Additional steps for your deployment process
+      
+   
