@@ -30,8 +30,11 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
       working-directory: module/
-
-
-    - name: Destroy Resources
+    - name: Plan Terraform
+      run: terraform plan -var-file=rakesh.tfvars -out=tfplan
       working-directory: module/
-      run: terraform destroy -var-file=rakesh.tfvars  -auto-approve 
+
+
+    - name: Destroy Terraform
+      run: terraform destroy -auto-approve "tfplan"
+      working-directory: module/
