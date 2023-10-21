@@ -38,10 +38,10 @@ jobs:
       run: ls
       
       
-    # - name: Plan Terraform
-    #   run: terraform plan -var-file=rakesh.tfvars -out=tfplan
+    - name: Plan Terraform
+      run: terraform plan 
      
 
-    # - name: Apply Terraform
-    #   run: terraform apply -auto-approve "tfplan"
+    - name: Apply Terraform
+      run: terraform apply -auto-approve 
       
