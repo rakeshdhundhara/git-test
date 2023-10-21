@@ -31,7 +31,8 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Initialize Terraform
-      run: terraform init
+      run: terraform init -reconfigure
+      
       
     - name: list contents
       run: ls
