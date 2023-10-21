@@ -29,7 +29,7 @@ jobs:
 
     - name: Initialize Terraform
       run: terraform init
-      working-directory: module/
+      working-directory: ./module
     - name: list contents
       run: ls
 
@@ -37,6 +37,6 @@ jobs:
     - name: Destroy Terraform
       run:  terraform destroy -var-file=rakesh.tfvars -auto-approve 
 
-      working-directory: module/
+      working-directory: ./module
      
 
