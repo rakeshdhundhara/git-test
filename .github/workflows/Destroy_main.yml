@@ -11,6 +11,9 @@ on:
 jobs:
   depstroy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./module
 
     steps:
     - name: Checkout
@@ -29,7 +32,7 @@ jobs:
 
     - name: Initialize Terraform
       run: terraform init
-      working-directory: ./module
+      
     - name: list contents
       run: ls
 
@@ -37,6 +40,6 @@ jobs:
     - name: Destroy Terraform
       run:  terraform destroy -var-file=rakesh.tfvars -auto-approve 
 
-      working-directory: ./module
+  
      
 
